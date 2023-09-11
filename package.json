@@ -19,5 +19,14 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.0.1"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "db/*.json"
+    ]
+  },
+  "dependencies": {
+    "commander": "^11.0.0",
+    "yargs": "^17.7.2"
   }
 }
