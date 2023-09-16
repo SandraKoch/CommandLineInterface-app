@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { nanoid } = require("nanoid");
 const path = require("path");
 
 let contactsPath = path.resolve("db", "contacts.json");
@@ -21,18 +22,20 @@ function removeContact(contactId) {
     (contact) => contactId !== contact.id
   );
   fs.writeFileSync(contactsPath, JSON.stringify(filteredContacts));
+  console.log("removed contact with id:", contactId);
 }
 
-function addContact(id, name, email, phone) {
+function addContact(name, email, phone) {
   const contacts = listContacts();
   const newContact = {
-    id: id,
+    id: nanoid(),
     name: name,
     email: email,
     phone: phone,
   };
   const updatedList = [...contacts, newContact];
   fs.writeFileSync(contactsPath, JSON.stringify(updatedList));
+  console.log("added new contact:", newContact);
 }
 
 module.exports = {
